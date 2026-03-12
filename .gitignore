@@ -5,6 +5,7 @@ __pycache__/
 .DS_Store
 .playwright-mcp/
 *.png
+!docs/*.png
 *.html
 !web/index.html
 parallel_results*.json
