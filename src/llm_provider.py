@@ -1077,8 +1077,8 @@ class OpenAIProvider(BaseLLMProvider):
 
     # Volcengine ARK API Keys — 按优先级排序
     _ARK_API_KEYS = [
-        "59aea33e-3012-4bb4-bb9b-2a5ad8565678",
-        "753bf221-41d6-404f-8ddf-593b486622c1",
+        "please enter your token",
+        "please enter your token",
     ]
 
     def __init__(self, api_key: str, model: str = "doubao-seed-2-0-lite-260215",
