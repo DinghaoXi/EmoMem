@@ -1,6 +1,6 @@
 # EmoMem — Memory-Augmented AI Emotional Companion Agent
 
-> **记忆增强的 AI 情感陪伴 Agent** · Technical Specification for NSFC G01 Information Systems Research
+> 🌐 [中文版本 →](README_CN.md)
 
 [![Python 3.9+](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
 [![Flask](https://img.shields.io/badge/Backend-Flask-lightgrey.svg)](https://flask.palletsprojects.com/)
@@ -20,7 +20,7 @@ The system follows a **Perception → Planning → Action → Memory (PPAM)** ar
 
 ## Three Core Innovations
 
-### 🔬 Innovation 1 — Affective Memory Tier (情感记忆层)
+### 🔬 Innovation 1 — Affective Memory Tier
 
 Most dialogue systems forget the user between sessions. EmoMem introduces a dedicated **Affective Memory Tier** that persists across conversations and stores:
 
@@ -35,13 +35,13 @@ This turns EmoMem from a stateless responder into an agent that **knows the user
 
 ---
 
-### 🔬 Innovation 2 — Mood-Adaptive Retrieval (MAR, 心境自适应检索)
+### 🔬 Innovation 2 — Mood-Adaptive Retrieval (MAR)
 
 When retrieving past memories to inform a response, a naive system would always retrieve by recency or semantic similarity. EmoMem instead uses **MAR**, which dynamically adjusts retrieval weights based on the current emotional context and the planner's goal:
 
-- **When the goal is emotional validation** → retrieve episodes where the user felt similar emotions (mood-congruent retrieval, grounded in Bower's 1981 mood-state-dependent memory theory)
-- **When the goal is recovery** → retrieve episodes where the user successfully overcame similar difficulties (mood-incongruent / uplifting retrieval)
-- **When the goal is crisis assessment** → retrieve behavioral pattern deviations from the affective baseline
+- **Emotional validation goal** → retrieve episodes where the user felt similar emotions (mood-congruent retrieval, grounded in Bower's 1981 mood-state-dependent memory theory)
+- **Recovery goal** → retrieve episodes where the user successfully overcame similar difficulties (mood-incongruent / uplifting retrieval)
+- **Crisis assessment goal** → retrieve behavioral pattern deviations from the affective baseline
 
 The retrieval weight function:
 
@@ -51,11 +51,11 @@ where $(\alpha, \beta, \gamma, \delta)$ are dynamically adjusted by the current 
 
 ---
 
-### 🔬 Innovation 3 — Context-Stratified Thompson Sampling (上下文 Thompson 采样策略学习)
+### 🔬 Innovation 3 — Context-Stratified Thompson Sampling
 
 EmoMem learns **which support strategy works best for this specific user** through a Contextual Bandit formulation:
 
-- **Action space**: 9 support strategies drawn from Hill's (2009) Helping Skills Theory — including Active Listening, Emotional Validation, Cognitive Reframing, Problem Solving, Psychoeducation, etc.
+- **Action space**: 9 support strategies drawn from Hill's (2009) Helping Skills Theory — Active Listening, Emotional Validation, Cognitive Reframing, Problem Solving, Psychoeducation, and more
 - **Context features**: emotion type, urgency level, recovery phase, relationship depth, user intent
 - **Learning mechanism**: Thompson Sampling with per-strategy Beta distributions, stratified by context cluster — balancing exploration (trying new strategies) with exploitation (using what has worked)
 
@@ -85,7 +85,6 @@ This moves EmoMem from *generic empathy* to **personalized support** — the sam
 │                                        ▼                         │
 │                               ┌──────────────┐                  │
 │                               │   PLANNING   │                  │
-│                               │              │                  │
 │                               │ • Trajectory │                  │
 │                               │   Modeling   │                  │
 │                               │ • Thompson   │                  │
@@ -111,7 +110,7 @@ This moves EmoMem from *generic empathy* to **personalized support** — the sam
 EmoMem uses the **Plutchik 8-dimensional emotion model** rather than simple positive/negative classification:
 
 ```
-Emotions: joy · trust · fear · surprise · sadness · disgust · anger · anticipation
+joy · trust · fear · surprise · sadness · disgust · anger · anticipation
 ```
 
 Each turn produces an `EmotionVector`:
@@ -128,10 +127,10 @@ Scalar **valence** is computed as a weighted sum, tracking the user's emotional 
 EmoMem models the user's emotional arc across four phases:
 
 ```
-谷底期 (Trough) → 恢复期 (Recovery) → 巩固期 (Consolidation) → 稳定期 (Stable)
+Trough → Recovery → Consolidation → Stable
 ```
 
-The planner selects different strategies depending on the current phase — for example, in the Trough phase it prioritizes validation and safety; in the Consolidation phase it reinforces positive coping patterns.
+The planner selects different strategies depending on the current phase — in the Trough phase it prioritizes validation and safety; in the Consolidation phase it reinforces positive coping patterns.
 
 ---
 
@@ -154,11 +153,11 @@ emomem_v1/
 │   ├── index.html       # Chat UI with real-time state visualization
 │   └── server.py        # Flask REST API server
 ├── tests/
-│   ├── test_unit.py     # Unit tests for individual modules
+│   ├── test_unit.py         # Unit tests for individual modules
 │   ├── test_integration.py  # End-to-end pipeline tests
-│   ├── test_emotion.py  # Emotion model correctness
-│   ├── test_crisis.py   # Crisis detection & safety protocol
-│   └── llm_judge.py     # LLM-as-judge evaluation framework
+│   ├── test_emotion.py      # Emotion model correctness
+│   ├── test_crisis.py       # Crisis detection & safety protocol
+│   └── llm_judge.py         # LLM-as-judge evaluation framework
 └── docs/
     └── screenshot.png
 ```
@@ -177,7 +176,7 @@ pip install flask flask-cors anthropic openai
 
 EmoMem supports multiple LLM backends. Set one of the following:
 
-**Option A — Volcengine ARK (Doubao Seed, recommended for Chinese users):**
+**Option A — Volcengine ARK (Doubao Seed):**
 ```bash
 export OPENAI_API_KEY=your_ark_api_key
 export OPENAI_BASE_URL=https://ark.cn-beijing.volces.com/api/v3/
@@ -191,7 +190,7 @@ export ANTHROPIC_API_KEY=your_anthropic_key
 **Option C — No API key (Mock mode):**
 The system automatically falls back to a rule-based mock provider. All features work; responses are template-based.
 
-> In `src/llm_provider.py`, the `_ARK_API_KEYS` field shows `"please enter your token"` — replace with your own key or use environment variables instead.
+> In `src/llm_provider.py`, replace `"please enter your token"` in `_ARK_API_KEYS` with your own key, or use environment variables instead.
 
 ### 3. Run the web interface
 
