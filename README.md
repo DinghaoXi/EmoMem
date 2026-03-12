@@ -1,0 +1,2 @@
+# EmoMem
+Emotional Companion Agent
