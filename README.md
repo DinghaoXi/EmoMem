@@ -259,13 +259,13 @@ The interface provides a real-time view of the agent's internal state:
 
 ## Research Context
 
-EmoMem was designed as a research prototype for the **NSFC G01 Information Systems** direction, addressing the intersection of:
+EmoMem sits at the intersection of three active research areas:
 
 - **AI companion systems** — long-term emotional support for loneliness and mental well-being
-- **Memory-augmented agents** — persistent, structured user modeling beyond session context windows
+- **Memory-augmented agents** — persistent, structured user modeling beyond single-session context windows
 - **Personalized strategy learning** — Bayesian online learning for individual-level support optimization
 
-Key theoretical foundations: Plutchik's Emotion Wheel (2001), Hill's Helping Skills Theory (2009), Bower's Mood-State-Dependent Memory (1981), Gross's Emotion Regulation Process Model (1998), Thompson Sampling (Thompson, 1933), and the PPAM agent architecture survey (Wang et al., 2024).
+Key theoretical foundations: Plutchik's Emotion Wheel (2001), Hill's Helping Skills Theory (2009), Bower's Mood-State-Dependent Memory (1981), Gross's Emotion Regulation Process Model (1998), Thompson Sampling (Thompson, 1933), and the PPAM agent architecture (Wang et al., 2024).
 
 ---
 
